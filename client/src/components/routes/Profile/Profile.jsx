@@ -3,13 +3,18 @@ import { apiRequest } from '../../../lib/apiRequest';
 import Chat from '../../Chat/Chat';
 import List from '../../List/List';
 import './profile.scss';
+import { useContext } from 'react';
+import { AuthContext } from '../../../Context/AuthContext';
 
 function Profile() {
   const navigate = useNavigate();
+  const {updateUser} = useContext(AuthContext);
+
   const handleLogout = async() => {
     try {
       await apiRequest.post("/auth/logout")
-      localStorage.removeItem("user");
+      updateUser(null);
+
       navigate("/");
     } catch (error) {
       console.log(error.message);

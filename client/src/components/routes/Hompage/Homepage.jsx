@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import "./Homepage.scss"
 import { Searchbar } from '../../SearchBar/Searchbar';
+import { AuthContext } from '../../../Context/AuthContext';
 
 const Homepage = () => {
   return (
