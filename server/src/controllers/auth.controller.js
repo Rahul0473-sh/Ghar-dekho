@@ -25,7 +25,6 @@ export const register = async (req, res) => {
     }
 }
 export const login = async (req, res) => {
-    console.log("hey");
     try {
         const { username, password } = req.body
         const user = await prisma.user.findUnique({ where: { username } });
@@ -44,14 +43,14 @@ export const login = async (req, res) => {
         const token =  jwt.sign(
             {
                 id: user.id,
-                isAdmin: false,
+                isAdmin: true,
             },
             process.env.JWT_SECRET_KEY,
             {
                 expiresIn: maxAge
             }
-        );
-        const { password: userPassword, ...userInfo } = user;
+        ); 
+        const { password: userPassword, ...userInfo } = user; // it's a way to get the values except password
 
         return res.status(200).cookie("token", token, options).json(userInfo);
         
