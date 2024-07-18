@@ -1,13 +1,13 @@
 
 import Homepage from './components/routes/Hompage/Homepage.jsx'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import Layout from './components/routes/Layout/Layout.jsx'
+import Layout, { RequireAuth } from './components/routes/Layout/Layout.jsx'
 import ListPage from './components/routes/Listpage/ListPage.jsx'
 import SinglePage from './components/routes/singlePage/SinglePage.jsx'
 import Profile from './components/routes/Profile/Profile.jsx'
 import Register from './components/routes/register/Register.jsx'
 import Login from './components/routes/Login/Login.jsx'
-
+import ProfileUpdatePage from './components/routes/profileUpdatePage/ProfileUpdatePage.jsx'
 
 
 function App() {
@@ -29,18 +29,28 @@ function App() {
           element: <SinglePage />,
         },
         {
-          path: "/profile",
-          element: <Profile/> 
-        },
-        {
           path: "/register",
-          element:<Register/>
+          element: <Register />,
         },
         {
           path: "/login",
-          element:<Login/>
+          element: <Login />,
+        },
+      ],
+    },
+    {
+      path: "/",
+      element: <RequireAuth />,
+      children: [
+        {
+          path: "/profile",
+          element: <Profile />
+
+        },
+        {
+          path: "/profile/update",
+          element:<ProfileUpdatePage/>
         }
-        
       ],
     },
   ]);

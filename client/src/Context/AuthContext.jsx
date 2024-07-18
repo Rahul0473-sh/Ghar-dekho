@@ -7,7 +7,8 @@ export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(
     storedUser ? JSON.parse(storedUser) : null
     );
-    const updateUser = (data) => {
+  const updateUser = (data) => {
+    console.log(data);
         setCurrentUser(data);
     }
     useEffect(() => {

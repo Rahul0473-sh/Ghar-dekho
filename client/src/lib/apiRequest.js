@@ -1,5 +1,5 @@
 import axios from "axios";
 export const apiRequest = axios.create({
     baseURL: "http://localhost:8000/api",
-    withCredentials: true,
+    withCredentials: true, //allowing to recive cookies
 });

@@ -5,10 +5,10 @@ import List from '../../List/List';
 import './profile.scss';
 import { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthContext';
-
+import { Link } from 'react-router-dom';
 function Profile() {
   const navigate = useNavigate();
-  const {updateUser} = useContext(AuthContext);
+  const {updateUser,currentUser} = useContext(AuthContext);
 
   const handleLogout = async() => {
     try {
@@ -26,23 +26,23 @@ function Profile() {
         <div className="wrapper">
           <div className="title">
             <h1>User Inforamtion</h1>
-            <button>Update Profile</button>
+          <Link to="/profile/update"> <button>Update Profile</button></Link> 
           </div>
           <div className="info">
             <span>
               Avatar
               <img
-                src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                src={currentUser.avatar}
                 alt=""
               />
             </span>
 
             <span>
-              UserName: <b>Rahul</b>
+              UserName: <b>{ currentUser.username}</b>
             </span>
 
             <span>
-              Email:<b>rs3253900@gmail.com</b>
+              Email:<b>{ currentUser.email}</b>
             </span>
             <button onClick={handleLogout}>Logout</button>
           </div>
