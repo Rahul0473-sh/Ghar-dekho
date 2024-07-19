@@ -8,6 +8,7 @@ import Profile from './components/routes/Profile/Profile.jsx'
 import Register from './components/routes/register/Register.jsx'
 import Login from './components/routes/Login/Login.jsx'
 import ProfileUpdatePage from './components/routes/profileUpdatePage/ProfileUpdatePage.jsx'
+import NewPostPage from './components/routes/newPostPage/newPostPage.jsx'
 
 
 function App() {
@@ -50,6 +51,10 @@ function App() {
         {
           path: "/profile/update",
           element:<ProfileUpdatePage/>
+        },
+        {
+          path: "/add",
+          element:<NewPostPage/>
         }
       ],
     },
