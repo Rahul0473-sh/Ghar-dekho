@@ -15,7 +15,6 @@ function NewPostPage() {
     e.preventDefault();
     const formdata = new FormData(e.target);
     const inputs = Object.fromEntries(formdata);
-    console.log(inputs);
     
     const res = await apiRequest.post("/post/addPost", {
       postData: {

@@ -9,6 +9,7 @@ import Register from './components/routes/register/Register.jsx'
 import Login from './components/routes/Login/Login.jsx'
 import ProfileUpdatePage from './components/routes/profileUpdatePage/ProfileUpdatePage.jsx'
 import NewPostPage from './components/routes/newPostPage/newPostPage.jsx'
+import { ListPageLaoder, SinglePageLaoder } from './lib/loader.js'
 
 
 function App() {
@@ -24,10 +25,12 @@ function App() {
         {
           path: "/list",
           element: <ListPage />,
+          loader:ListPageLaoder
         },
         {
           path: "/:id",
           element: <SinglePage />,
+          loader:SinglePageLaoder,
         },
         {
           path: "/register",
