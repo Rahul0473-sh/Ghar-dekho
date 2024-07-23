@@ -24,7 +24,7 @@ export const listData = [
   {
     id: 3,
     title: "A New Apartment in the City!",
-    img: "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/200701211455342954-b42d6a4a129211eb98430242ac110003.jpg ",
+    images: ["https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/200701211455342954-b42d6a4a129211eb98430242ac110003.jpg "     ],
     bedroom: 1,
     bathroom: 1,
     price: 800,
@@ -35,7 +35,7 @@ export const listData = [
   {
     id: 4,
     title: "Great Location! Great Price! Great Apartment!",
-    img: "https://images.pexels.com/photos/2467285/pexels-photo-2467285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    images: ["https://images.pexels.com/photos/2467285/pexels-photo-2467285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
     bedroom: 2,
     bathroom: 1,
     price: 1000,
@@ -46,7 +46,7 @@ export const listData = [
   {
     id: 5,
     title: "Apartment 5",
-    img: "https://images.pexels.com/photos/276625/pexels-photo-276625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    images: ["https://images.pexels.com/photos/276625/pexels-photo-276625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
     bedroom: 3,
     bathroom: 2,
     price: 1500,
@@ -57,8 +57,8 @@ export const listData = [
   {
     id: 6,
     title: "Apartment 6",
-    img: "https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    bedroom: 1,
+    images: ["https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
+      bedroom: 1,
     bathroom: 1,
     price: 800,
     address: "890 Regent Street, London",
@@ -68,7 +68,7 @@ export const listData = [
   {
     id: 7,
     title: "Apartment 7",
-    img: "https://images.pexels.com/photos/2029667/pexels-photo-2029667.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    images: ["https://images.pexels.com/photos/2029667/pexels-photo-2029667.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"    ],
     bedroom: 2,
     bathroom: 1,
     price: 1000,
@@ -79,8 +79,7 @@ export const listData = [
   {
     id: 8,
     title: "Apartment 8",
-    img: "https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    bedroom: 3,
+    images: ["https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],   bedroom: 3,
     bathroom: 2,
     price: 1500,
     address: "8765 Main High Street, London",
@@ -116,5 +115,5 @@ export const singlePostData = {
 export const userData = {
   id: 1,
   name: "John Doe",
-  img: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-};
+  images: ["https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
+};     

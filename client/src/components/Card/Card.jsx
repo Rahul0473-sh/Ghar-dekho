@@ -7,7 +7,7 @@ function Card({ value }) {
   return (
     <div className="card">
       <Link to={`/${id}`} className="imageContainer">
-        <img src={images[0]} alt="" />
+        <img src={ images[0]} alt="" />
       </Link>
       <div className="textContainer">
         <h2 className="title">

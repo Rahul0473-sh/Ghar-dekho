@@ -1,7 +1,7 @@
 import prisma from "../lib/prisma.js";
+import jwt from "jsonwebtoken"
 export const getPosts = async (req, res) => {
     const query = req.query;
-    console.log(query);
    
     try {
         const posts = await prisma.post.findMany({
@@ -16,7 +16,7 @@ export const getPosts = async (req, res) => {
             }
           },
         });
-        console.log(posts);
+        console.log()
         res.status(200).json(posts);
     } catch (error) {
         console.log(error);
@@ -24,27 +24,47 @@ export const getPosts = async (req, res) => {
     }
 };
 
-export const getPost = async(req,res) => {
-    try {
-        const id = req.params.id;
-        const post = await prisma.post.findUnique({
-            where: { id },
-            include: {
-                postDetail: true,
-                user: {
-                    select: {
-                        username: true,
-                        avatar:true,
-                    }
-                }
-            }
-        })
-        res.status(200).json(post);
-    } catch (error) {
-        console.log(error);
-        return res.status().json({message:"Failed to Get post"})
+export const getPost = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const post = await prisma.post.findUnique({
+      where: { id },
+      include: {
+        postDetail: true,
+        user: {
+          select: {
+            username: true,
+            avatar: true,
+          },
+        },
+      },
+    });
+
+    const token = req.cookies?.token;
+    if (token) {
+      jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, payload) => {
+        if (err) {
+          return res.status(200).json({ ...post, isSaved: false });
+        }
+        const saved = await prisma.savedPost.findUnique({
+          where: {
+            userId_postId: {
+              postId: id,
+              userId: payload.id,
+            },
+          },
+        });
+        return res.status(200).json({ ...post, isSaved: saved ? true : false });
+      });
+    } else {
+      return res.status(200).json({ ...post, isSaved: false });
     }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Failed to get post" });
+  }
 };
+
 
 export const addPost = async (req, res) => {
     try {
