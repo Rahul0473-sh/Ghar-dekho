@@ -104,3 +104,24 @@ export const savePost = async(req, res) => {
     
   }
 }
+export const profilePost = async (req, res) => {
+  try {
+    const tokenUserID = req.userId;
+    const userPosts = await prisma.post.findMany({
+      where: {
+        userId: tokenUserID
+      }
+    });
+    const saved = await prisma.savedPost.findMany({
+      where: { userId: tokenUserID },
+      include: {
+        post:true
+      }
+    });
+    const savedPosts = saved.map((item) => item.post);
+    res.status(200).json({ savedPosts, userPosts });
+  } catch (error) {
+    
+  }
+ 
+}

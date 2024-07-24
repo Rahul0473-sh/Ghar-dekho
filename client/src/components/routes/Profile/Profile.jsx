@@ -12,7 +12,6 @@ function Profile() {
 
   const handleLogout = async() => {
     try {
-      console.log("hey");
       await apiRequest.post("/auth/logout")
       updateUser(null);
 
