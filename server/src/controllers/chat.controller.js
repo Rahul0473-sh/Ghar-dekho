@@ -2,7 +2,7 @@ import prisma from "../lib/prisma.js";
 
 export const getChats = async(req,res) => {
     try {
-        console.log("hey");
+       
         const tokenUserId = req.userId;
         const chats = await prisma.chat.findMany({
             where: {
@@ -11,6 +11,21 @@ export const getChats = async(req,res) => {
                 }
             }
         })
+        for (const chat of chats) {
+            const reciverId = chat.userIDs.find((id) => id !== tokenUserId);
+            const reciver = await prisma.user.findUnique({
+                where: { id :reciverId},
+                select: {
+                    id: true,
+                    username: true,
+                    avatar: true,
+                    
+                }
+            })
+            console.log(reciver)
+            chat.reciver = reciver;
+        }
+       
         res.status(200).json(chats);
     } catch (error) {
         console.log(error.message);
@@ -36,7 +51,7 @@ export const getChat = async(req, res) => {
                 }
             }
         });
-       const hii= await prisma.chat.update({
+        await prisma.chat.update({
             where: {
                 id:req.params.id,
             },
@@ -45,7 +60,7 @@ export const getChat = async(req, res) => {
                     push:[tokenUserId]
                 }
             }
-       })
+        })
         res.status(200).json(chat);
   } catch (error) {
     console.log(error.message);

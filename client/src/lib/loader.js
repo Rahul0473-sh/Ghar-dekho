@@ -13,10 +13,10 @@ export const ListPageLaoder = async ({ request, params }) => {
     return rest.data;
 };
 export const profilePageLoader = async () => {
-    // const postPromise = apiRequest("/user/ProfilePost");
-    // return defer({
-    //     postResponse: postPromise,
-    // })
-    const resposne = await apiRequest("/user/profilePost");
-    return resposne.data;
+    const postPromise = apiRequest("/user/profilePost");
+    const chatPromise=apiRequest("/chats")
+    return defer({
+        postResponse: postPromise,
+        chatResponse:chatPromise,
+    });
 }

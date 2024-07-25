@@ -16,7 +16,6 @@ function ProfileUpdatePage() {
       e.preventDefault();
       const formdata = new FormData(e.target);
       const { username, email, password } = Object.fromEntries(formdata); 
-      console.log("hey");
       
       const res = await apiRequest.put(`/user/updateuser/${currentUser.id}`,
         {

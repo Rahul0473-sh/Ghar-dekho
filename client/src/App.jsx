@@ -9,7 +9,7 @@ import Register from './components/routes/register/Register.jsx'
 import Login from './components/routes/Login/Login.jsx'
 import ProfileUpdatePage from './components/routes/profileUpdatePage/ProfileUpdatePage.jsx'
 import NewPostPage from './components/routes/newPostPage/newPostPage.jsx'
-import { ListPageLaoder, SinglePageLaoder } from './lib/loader.js'
+import { ListPageLaoder, SinglePageLaoder,profilePageLoader } from './lib/loader.js'
 
 
 function App() {
@@ -48,7 +48,8 @@ function App() {
       children: [
         {
           path: "/profile",
-          element: <Profile />
+          element: <Profile />,
+          loader:profilePageLoader,
 
         },
         {

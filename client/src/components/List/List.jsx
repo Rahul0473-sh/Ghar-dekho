@@ -2,10 +2,10 @@ import './list.scss';
 import { listData } from '../../lib/dummyData';
 import Card from '../Card/Card';
 
-function List() {
+function List({posts}) {
   return (
       <div className='list'>
-          {listData.map((x) => (
+          {posts.map((x) => (
               <Card key={x.id} value={x}/>
           ))}
     </div>

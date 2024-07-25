@@ -72,6 +72,7 @@ export const savePost = async(req, res) => {
   try {
     const postId = req.body.postId
     const tokenUserID = req.userId;
+    console.log(postId, tokenUserID);
     const savedPost = await prisma.savedPost.findUnique({
       where: {
         userId_postId: {
@@ -86,7 +87,7 @@ export const savePost = async(req, res) => {
           id: savedPost.id,
         }
       });
-      return res.json(200).status({ message: "Unsaved Successfully" });
+      return res.status(200).json({ message: "Unsaved Successfully" });
     }
     else {
       await prisma.savedPost.create({
@@ -95,7 +96,7 @@ export const savePost = async(req, res) => {
           postId,
         },
       });
-      return res.json(200).status({ message: "Saved Successfully" });
+      return res.status(200).json({ message: "Saved Successfully" });
       
     }
   } catch (error) {

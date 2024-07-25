@@ -14,7 +14,6 @@ export const addMessage = async (req, res) => {
                 }
             }
         })
-        console.log(chat);
         if (!chat) return res.status(404).json({ message: "Chat not Found" });
         const message = await prisma.message.create({
             data: {

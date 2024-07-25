@@ -9,7 +9,7 @@ export const register = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         console.log(hashedPassword);
 
-        const newUser = await prisma.user.create({
+        const newUser = await prisma.user.create({ 
             data: {
                 username:userName, 
                 email,
@@ -34,7 +34,7 @@ export const login = async (req, res) => {
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) return res.status(401).json({ message: "Invalid Credenitals in password" });
         
-        const maxAge = 24 * 60 * 60 * 1000;
+        const maxAge = 24*2 * 60 * 60 * 1000;
         const options = {
             httpOnly: true,
             maxAge: maxAge,
