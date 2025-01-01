@@ -49,7 +49,7 @@ function Profile() {
           </div>
           <div className="title">
             <h1>My List</h1>
-            <button>Create New Post</button>
+            <button onClick={()=>navigate("/add")}>Create New Post</button>
           </div>
           <Suspense fallback={<p>Loading...</p>}>
             <Await

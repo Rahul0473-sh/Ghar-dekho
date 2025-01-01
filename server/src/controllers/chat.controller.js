@@ -23,7 +23,7 @@ export const getChats = async(req,res) => {
                 }
             })
             console.log(reciver)
-            chat.reciver = reciver;
+            chat.reciver = reciver; 
         }
        
         res.status(200).json(chats);

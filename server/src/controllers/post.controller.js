@@ -26,6 +26,7 @@ export const getPosts = async (req, res) => {
 export const getPost = async (req, res) => {
   try {
     const id = req.params.id;
+    console.log(id);
     const post = await prisma.post.findUnique({
       where: { id },
       include: {

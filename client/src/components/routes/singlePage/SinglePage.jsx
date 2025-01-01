@@ -43,7 +43,7 @@ function SinglePage() {
               </div>
               <div className="user">
                 <img src={post.user.avatar} alt="" />
-                <span>{userData.name}</span>
+                <span>{post.user.username}</span>
               </div>
             </div>
             <div
