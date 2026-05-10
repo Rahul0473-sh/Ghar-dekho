@@ -2,10 +2,12 @@ import { useContext, useState } from 'react'
 import "./navbar.scss"
 import { Link } from "react-router-dom"
 import { AuthContext } from '../../Context/AuthContext';
+import { SocketContext } from '../../Context/socketContext';
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { currentUser } = useContext(AuthContext);
+  const { unseenCount } = useContext(SocketContext);
 
   return (
     <nav>
@@ -25,7 +27,9 @@ export const Navbar = () => {
             <img src={currentUser.avatar || "/noavatar.jpg"} alt="" />
             <span>{currentUser.username}</span>
             <Link to="/profile" className="profile">
-              <div className="notification">3</div>
+              {unseenCount > 0 && (
+                <div className="notification">{unseenCount}</div>
+              )}
               <span>Profile</span>
             </Link>
           </div>

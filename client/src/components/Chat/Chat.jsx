@@ -8,7 +8,7 @@ import { SocketContext } from "../../Context/socketContext";
 function Chat({ chats }) {
   const [chat, setChat] = useState(null);
   const { currentUser } = useContext(AuthContext);
-  const { socket } = useContext(SocketContext);
+  const { socket, decrease } = useContext(SocketContext);
 
   const messageEndRef = useRef();
 
@@ -66,6 +66,7 @@ function Chat({ chats }) {
           messages: [...prev.messages, data],
         }));
         read();
+        decrease();
       }
     };
 

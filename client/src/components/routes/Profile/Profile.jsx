@@ -3,12 +3,14 @@ import { apiRequest } from '../../../lib/apiRequest';
 import Chat from '../../Chat/Chat';
 import List from '../../List/List';
 import './profile.scss';
-import { Suspense, useContext } from 'react';
+import { Suspense, useContext, useEffect } from 'react';
 import { AuthContext } from '../../../Context/AuthContext';
+import { SocketContext } from '../../../Context/socketContext';
 import { Link } from 'react-router-dom';
 function Profile() {
   const navigate = useNavigate();
   const { updateUser, currentUser } = useContext(AuthContext);
+  const { setUnseenCount } = useContext(SocketContext);
   const data = useLoaderData();
 
   const handleLogout = async() => {
@@ -80,7 +82,14 @@ function Profile() {
               resolve={data.chatResponse}
               errorElement={<p>Error loading posts!</p>}
             >
-              {(chatResponse) => <Chat chats={chatResponse.data} />}
+              {(chatResponse) => {
+                const chats = chatResponse.data;
+                const unseen = chats.filter(
+                  (c) => !c.seenBy.includes(currentUser.id)
+                ).length;
+                setUnseenCount(unseen);
+                return <Chat chats={chats} />;
+              }}
             </Await>
           </Suspense>
         </div>
