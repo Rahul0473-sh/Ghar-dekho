@@ -4,6 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    overflow: hidden;
 
     a {
         transition: all 0.4s ease;
@@ -76,19 +77,22 @@
         }
 
         span{
-            @include sm{
+            @include md{
             display: none;
             }
         }
 
         }
         .profile{
-            padding: 12px,24px;
+            padding: 12px 24px;
             background-color: #fece51;
             cursor: pointer;
             position: relative;
-            cursor: pointer;
             border: none;
+
+            @include sm {
+            display: flex;
+            }
 
             .notification{
                 position: absolute;
@@ -109,6 +113,7 @@
         background-color: #fece51;
         height: fit-content;
         }
+
 
         .menuIcon {
         display: none;

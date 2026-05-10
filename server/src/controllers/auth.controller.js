@@ -21,7 +21,7 @@ export const register = async (req, res) => {
 
     } catch (error) {
         console.log("error in register", error.message);
-        throw error;
+        res.status(500).json({ message: "Failed to register" });
     }
 }
 export const login = async (req, res) => {
@@ -56,7 +56,7 @@ export const login = async (req, res) => {
         
     } catch (error) {
         console.log(error.message)
-        res.status(501).json({ message: "failed to login"});
+        res.status(500).json({ message: "failed to login"});
     }
 }
 export const logout = async (req, res) => {

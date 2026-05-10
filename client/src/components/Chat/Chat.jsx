@@ -49,6 +49,8 @@ function Chat({ chats }) {
   };
 
   useEffect(() => {
+    if (!chat || !socket) return;
+
     const read = async () => {
       try {
         await apiRequest.put("/chats/read/" + chat.id);
@@ -57,25 +59,22 @@ function Chat({ chats }) {
       }
     };
 
-    if (chat && socket) {
-      socket.on("getMessage", (data) => {
-        if (chat.id === data.chatId) {
-          setChat((prev) => ({
-            ...prev,
-            messages: [...prev.messages, data],
-          }));
-          read();
-        }
-      });
-    }
+    const handleMessage = (data) => {
+      if (chat.id === data.chatId) {
+        setChat((prev) => ({
+          ...prev,
+          messages: [...prev.messages, data],
+        }));
+        read();
+      }
+    };
+
+    socket.on("getMessage", handleMessage);
+
     return () => {
-      socket.off("getMessage");
+      socket.off("getMessage", handleMessage);
     };
   }, [socket, chat]);
-
-  useEffect(() => {
-    console.log("Chat state updated: ", chat);
-  }, [chat]);
 
   return (
     <div className="chat">
